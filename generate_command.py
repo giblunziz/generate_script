@@ -11,7 +11,6 @@ delta = relativedelta(days=1)
 
 
 def process(p_command, p_business_unit, p_date_from, p_date_to, p_step, p_wait_time):
-
     start_date = datetime.strptime(p_date_from, "%d/%m/%Y")
     end_date = datetime.strptime(p_date_to, "%d/%m/%Y")
 
@@ -31,7 +30,6 @@ def process(p_command, p_business_unit, p_date_from, p_date_to, p_step, p_wait_t
             f'{p_command} -var \'~/num_bu\' {p_business_unit} -var \'~/from\' {si_date.strftime("%d/%m/%Y")} -var \'~/to\' {i_date.strftime("%d/%m/%Y")}')
         if p_wait_time:
             print(f'sleep {p_wait_time}m')
-
 
 
 if __name__ == '__main__':
@@ -56,7 +54,4 @@ if __name__ == '__main__':
     if args.wait:
         step = int(args.wait)
 
-
     process(args.command, args.bu, args.fromdate, args.todate, step, wait_time)
-
-
