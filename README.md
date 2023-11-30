@@ -22,5 +22,5 @@ options:
 
 Example:
 
-./startdelivery.sh -name FIT-VSTOCK.ST-GCP.GEN -var '~/cod_flux' reprise_hmv -var '~/num_bu' 003 -var '~/from' 01/01/2023 -var '~/to' 01/01/2024
+> ./startdelivery.sh -name FIT-VSTOCK.ST-GCP.GEN -var '~/cod_flux' reprise_hmv -var '~/num_bu' 003 -var '~/from' 01/01/2023 -var '~/to' 01/01/2024
 
