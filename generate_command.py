@@ -21,15 +21,23 @@ def process(p_command, p_business_unit, p_date_from, p_date_to, p_step, p_wait_t
 
     step = relativedelta(days=int(p_step))
 
+    global_count = (e_date - i_date) / p_step
+    cmds = global_count.days+1
+    # print(f'Processing {cmds} commands')
+
+    current = 1
     while i_date < e_date:
         si_date = i_date
         i_date = i_date + step
         if i_date > e_date:
             i_date = e_date
+        print(f'echo "Processing {current}/{cmds} {p_business_unit} from {si_date.strftime("%d/%m/%Y")} to {i_date.strftime("%d/%m/%Y")}"')
         print(
             f'{p_command} -var \'~/num_bu\' {p_business_unit} -var \'~/from\' {si_date.strftime("%d/%m/%Y")} -var \'~/to\' {i_date.strftime("%d/%m/%Y")}')
         if p_wait_time:
-            print(f'sleep {p_wait_time}m')
+            # print(f'sleep {p_wait_time}m')
+            print(f'read -t {p_wait_time*60} -p "Hit ENTER or wait {p_wait_time} minutes"')
+        current += 1
 
 
 if __name__ == '__main__':
@@ -51,7 +59,7 @@ if __name__ == '__main__':
         wait_time = int(args.wait)
 
     step = 60
-    if args.wait:
-        step = int(args.wait)
+    if args.step:
+        step = int(args.step)
 
     process(args.command, args.bu, args.fromdate, args.todate, step, wait_time)
