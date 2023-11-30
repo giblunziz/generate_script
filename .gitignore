@@ -7,7 +7,8 @@ __pycache__/
 *.so
 
 #Intellij
-.idea/**
+.idea
+.idea/
 
 # Distribution / packaging
 .Python

@@ -25,8 +25,10 @@ def process(p_command, p_business_unit, p_date_from, p_date_to, p_step, p_wait_t
     while i_date < e_date:
         si_date = i_date
         i_date = i_date + step
+        if i_date > e_date:
+            i_date = e_date
         print(
-            f'{p_command} -var /bu: {p_business_unit} -var /from: {si_date.strftime("%d/%m/%Y")} -var /to: {i_date.strftime("%d/%m/%Y")}')
+            f'{p_command} -var \'~/num_bu\' {p_business_unit} -var \'~/from\' {si_date.strftime("%d/%m/%Y")} -var \'~/to\' {i_date.strftime("%d/%m/%Y")}')
         if p_wait_time:
             print(f'sleep {p_wait_time}m')
 
@@ -50,7 +52,7 @@ if __name__ == '__main__':
     if args.wait:
         wait_time = int(args.wait)
 
-    step = 20
+    step = 60
     if args.wait:
         step = int(args.wait)
 
